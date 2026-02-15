@@ -2,7 +2,6 @@
 <html>
 <head>
 <script>
-// Put your URLs in order here
 const urls = [
 "https://www.google.com/maps/place//data=!4m3!3m2!1s0x80c2b14fa4fd5b75:0x6ff0f7828832d29!12e1?source=g.page.m.ia._&laa=nmx-review-solicitation-ia2",
 "https://www.google.com/maps/place//data=!4m3!3m2!1s0x80c2bf2a3c267467:0x7a5494db054c676e!12e1?source=g.page.m.ia._&laa=nmx-review-solicitation-ia2",
@@ -28,20 +27,18 @@ const urls = [
 "https://www.google.com/maps/place//data=!4m3!3m2!1s0x4664d5585c77cf25:0x4e4be012fce263b7!12e1?source=g.page.m.ia._&laa=nmx-review-solicitation-ia2"
 ];
 
-// Track position using localStorage
-let index = localStorage.getItem("redirectIndex");
-if (!index) index = 0;
-index = parseInt(index);
+const priorityUrl = "https://www.google.com/maps/place//data=!4m3!3m2!1s0x89c3e759befd9abf:0x280e425883e3cc1b!12e1?source=g.page.m.ia._&laa=nmx-review-solicitation-ia2";
+const priorityBoost = 0.15;
 
-window.location.href = urls[index];
+const random = Math.random();
 
-// Update for next visitor
-index++;
-if (index >= urls.length) index = 0;
-localStorage.setItem("redirectIndex", index.toString());
+if (random < priorityBoost) {
+  window.location.href = priorityUrl;
+} else {
+  const randomIndex = Math.floor(Math.random() * urls.length);
+  window.location.href = urls[randomIndex];
+}
 </script>
 </head>
 <body></body>
 </html>
-
-
